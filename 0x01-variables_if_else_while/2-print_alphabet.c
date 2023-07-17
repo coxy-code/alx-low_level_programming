@@ -7,14 +7,15 @@
  */
 int main(void)
 {
-    int letter = 'a';
+	int letter = 'a';
 
-    while (letter <= 'z')
-    {
-        putchar(letter);
-        letter++;
-    }
-    putchar('\n');
+	while (letter <= 'z')
+	{
+		putchar(letter);
+		letter++;
+	}
+	putchar('\n');
 
-    return (0);
+	return (0);
 }
+
