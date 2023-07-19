@@ -1,14 +1,21 @@
-#include <stdio.h>
+#include <unistd.h>
 
 /**
- * main - Entry point of the program
+ * main - Entry point
  *
- * Description: Prints "Programming is like building a multilingual puzzle,"
- *              followed by a new line using the puts function.
- * Return: Always 0 (Success)
+ * Description: Prints the quote "and that piece of art is useful" - Dora Korpar, 2015-10-19
+ * to the standard error.
+ *
+ * Return: Always 1 (Failure)
  */
 int main(void)
 {
-    puts("Programming is like building a multilingual puzzle");
-    return (0);
+    const char *quote = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
+    /* The quote to be printed */
+
+    write(2, quote, 59);
+    /* Use the write syscall to print the quote to standard error */
+
+    return (1);
+    /* Return 1 to indicate failure, as required */
 }
