@@ -1,13 +1,15 @@
-#include <stdio.h>
+#include <unistd.h>
 
 /**
- * main - Prints "Programming is like building a multilingual puzzle"
- * followed by a new line.
+ * main - Entry point of the program
  *
- * Return: Always 0.
+ * Description: This function prints the string "Programming is like building a multilingual puzzle"
+ *              using the puts function and returns 0.
+ *
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-  puts("Programming is like building a multilingual puzzle");
-  return 0;
+	write(1, "\"Programming is like building a multilingual puzzle\n", 51);
+	return (0);
 }
