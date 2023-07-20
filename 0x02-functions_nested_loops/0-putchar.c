@@ -4,14 +4,17 @@
  * main - Entry point of the program
  *
  * Description: Prints "_putchar" followed by a new line.
- * Return: Always 0 (SUCCESS)
+ * Return: Always 0
  */
 int main(void)
 {
     char message[] = "_putchar\n";
-    int len = sizeof(message) - 1; // Exclude the null terminator
+    int i;
 
-    write(1, message, len); // Write the message to the standard output (file descriptor 1)
+    for (i = 0; message[i] != '\0'; i++)
+    {
+        _putchar(message[i]);
+    }
 
-    return (SUCCESS);
+    return (0);
 }
