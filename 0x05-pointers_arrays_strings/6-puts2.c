@@ -11,7 +11,7 @@ int i = 0;
 while (str[i] != '\0')
 {
 _putchar(str[i]);
-i += 2; // Move to the next even-indexed character
+i += 2; /* Move to the next even-indexed character */
 }
 
 _putchar('\n');
