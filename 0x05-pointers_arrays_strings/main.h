@@ -12,4 +12,5 @@ void rev_string(char *s);
 void puts2(char *str);
 int _putchar(char c);
 char *_strcpy(char *dest, const char *src);
+void print_array(int *a, int n);
 #endif /* MAIN_H */
