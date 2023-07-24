@@ -11,4 +11,5 @@ void print_rev(char *s);
 void rev_string(char *s);
 void puts2(char *str);
 int _putchar(char c);
+char *_strcpy(char *dest, const char *src);
 #endif /* MAIN_H */
