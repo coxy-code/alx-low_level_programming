@@ -2,8 +2,7 @@
 
 /**
 * _strcpy - Copies the string pointed to by src, including the terminating null byte (\0),
-*           to the buffer pointed to by dest.
-* @dest: Pointer to the destination buffer.
+*@dest: Pointer to the destination buffer.
 * @src: Pointer to the source string.
 *
 * Return: The pointer to dest.
@@ -21,5 +20,5 @@ src++;
 
 *dest = '\0';
 
-return dest_ptr;
+return (dest_ptr);
 }
