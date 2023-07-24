@@ -21,6 +21,6 @@ src++;
 
 *dest = '\0';
 
-return dest_ptr;
+return (dest_ptr);
 }
 
