@@ -20,4 +20,6 @@ int _abs(int n);
 
 int print_sign(int n);
 
+int _isalpha(int c);
+
 #endif /* MAIN_H */
