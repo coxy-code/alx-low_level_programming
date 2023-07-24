@@ -7,5 +7,6 @@ int _putchar(char c);
 /* Function prototypes for your custom functions */
 void print_alphabet(void);
 void print_alphabet_x10(void);
+void print_to_98(int n);
 
 #endif /* MAIN_H */
