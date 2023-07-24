@@ -12,4 +12,6 @@ int add(int a, int b);
 
 void times_table(void);
 
+void jack_bauer(void);
+
 #endif /* MAIN_H */
