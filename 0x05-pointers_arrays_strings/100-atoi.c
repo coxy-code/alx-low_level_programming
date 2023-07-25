@@ -2,38 +2,42 @@
 
 /**
  * _atoi - Convert a string to an integer.
- * @s: The string to be converted.
+ * @s: The input string.
  *
  * Return: The converted integer.
  */
 int _atoi(char *s)
 {
+    int sign = 1;
     int result = 0;
-    int sign = 1; // Sign of the number, 1 for positive, -1 for negative
+    int i = 0;
 
-    // Skip leading white spaces
-    while (*s == ' ')
-        s++;
-
-    // Check for the sign of the number
-    while (*s == '-' || *s == '+')
+    while (s[i] != '\0')
     {
-        if (*s == '-')
-            sign *= -1;
-        s++;
-    }
+        if (s[i] == '-')
+            sign = -sign;
 
-    // Convert the remaining digits to integer
-    while (*s >= '0' && *s <= '9')
-    {
-        // Check for integer overflow
-        if (result > (INT_MAX - (*s - '0')) / 10)
+        if (s[i] >= '0' && s[i] <= '9')
         {
-            return (sign == 1 ? INT_MAX : INT_MIN);
+            // Calculate the integer value based on the digit
+            result = result * 10 + (s[i] - '0');
+            
+            // Check for overflow
+            if (result > 0 && s[i + 1] < '0')
+            {
+                if (sign == 1)
+                    return (INT_MAX);
+                else
+                    return (INT_MIN);
+            }
         }
-
-        result = result * 10 + (*s - '0');
-        s++;
+        else if (result > 0)
+        {
+            // If a non-digit character is encountered after the number,
+            // break the loop and return the current result
+            break;
+        }
+        i++;
     }
 
     return (result * sign);
