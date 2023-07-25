@@ -1,36 +1,41 @@
 #include "main.h"
 
+/**
+ * _atoi - Convert a string to an integer.
+ * @s: The string to be converted.
+ *
+ * Return: The converted integer.
+ */
 int _atoi(char *s)
 {
-int sign = 1; // Sign of the number, 1 for positive, -1 for negative
-int result = 0; // The final result
+    int result = 0;
+    int sign = 1; // Sign of the number, 1 for positive, -1 for negative
 
-// Skip leading white spaces
-while (*s == ' ')
-s++;
+    // Skip leading white spaces
+    while (*s == ' ')
+        s++;
 
-// Check for the sign
-if (*s == '-' || *s == '+')
-{
-if (*s == '-')
-sign = -1;
-s++;
-}
-// Convert the numeric characters to an integer
-while (*s >= '0' && *s <= '9')
-{
-// Check for overflow before multiplying by 10 and adding the next digit
-if (result > (INT_MAX - (*s - '0')) / 10)
-{
-// Overflow detected, return INT_MAX or INT_MIN based on the sign
-return sign == 1 ? INT_MAX : INT_MIN;
-}
+    // Check for the sign of the number
+    while (*s == '-' || *s == '+')
+    {
+        if (*s == '-')
+            sign *= -1;
+        s++;
+    }
 
-result = result * 10 + (*s - '0');
-s++;
-}
+    // Convert the remaining digits to integer
+    while (*s >= '0' && *s <= '9')
+    {
+        // Check for integer overflow
+        if (result > (INT_MAX - (*s - '0')) / 10)
+        {
+            return (sign == 1 ? INT_MAX : INT_MIN);
+        }
 
-// Apply the sign to the final result
-return result * sign;
+        result = result * 10 + (*s - '0');
+        s++;
+    }
+
+    return (result * sign);
 }
 
