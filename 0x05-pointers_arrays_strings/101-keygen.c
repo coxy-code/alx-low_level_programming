@@ -6,11 +6,11 @@
 
 /**
  * generate_random_password - Generate a random password
- * Return: Pointer to the generated password
+ * Return: Pointer to the dynamically allocated generated password
  */
 char *generate_random_password(void)
 {
-    static char password[PASSWORD_LENGTH + 1] = {0};
+    char *password = malloc((PASSWORD_LENGTH + 1) * sizeof(char));
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     int i;
 
@@ -20,6 +20,7 @@ char *generate_random_password(void)
     {
         password[i] = charset[rand() % (sizeof(charset) - 1)];
     }
+    password[PASSWORD_LENGTH] = '\0';
 
     return password;
 }
@@ -34,8 +35,8 @@ int main(void)
 
     password = generate_random_password();
     printf("%s\n", password);
+    free(password);
 
     return 0;
 }
-
 
