@@ -1,41 +1,41 @@
-	#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define PASSWORD_LENGTH 12
 
 /**
- * _atoi - Convert a string to an integer.
- * @s: The string to be converted.
- *
- * Return: The converted integer.
+ * generate_random_password - Generate a random password
+ * Return: Pointer to the generated password
  */
-int _atoi(char *s)
+char *generate_random_password(void)
 {
-    int result = 0;
-    int sign = 1; // Sign of the number, 1 for positive, -1 for negative
+    static char password[PASSWORD_LENGTH + 1] = {0};
+    const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    int i;
 
-    // Skip leading white spaces
-    while (*s == ' ')
-        s++;
+    srand(time(NULL));
 
-    // Check for the sign of the number
-    while (*s == '-' || *s == '+')
+    for (i = 0; i < PASSWORD_LENGTH; i++)
     {
-        if (*s == '-')
-            sign *= -1;
-        s++;
+        password[i] = charset[rand() % (sizeof(charset) - 1)];
     }
 
-    // Convert the remaining digits to integer
-    while (*s >= '0' && *s <= '9')
-    {
-        // Check for integer overflow
-        if (result > (INT_MAX - (*s - '0')) / 10)
-        {
-            return (sign == 1 ? INT_MAX : INT_MIN);
-        }
-
-        result = result * 10 + (*s - '0');
-        s++;
-    }
-
-    return (result * sign);
+    return password;
 }
+
+/**
+ * main - Entry point
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    char *password;
+
+    password = generate_random_password();
+    printf("%s\n", password);
+
+    return 0;
+}
+
 
