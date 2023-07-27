@@ -1,4 +1,22 @@
 #include "main.h"
+#include <stdbool.h>
+
+/**
+ * is_separator - Checks if a character is a word separator.
+ * @c: The character to check.
+ *
+ * Return: true if the character is a separator, false otherwise.
+ */
+bool is_separator(char c)
+{
+    char separators[] = " \t\n,;.!?\"(){}";
+    for (int i = 0; separators[i] != '\0'; i++)
+    {
+        if (c == separators[i])
+            return true;
+    }
+    return false;
+}
 
 /**
  * cap_string - Capitalizes all words of a string.
@@ -8,28 +26,17 @@
  */
 char *cap_string(char *str)
 {
+    bool capitalize_next = true;
     char *ptr = str;
-    int capitalize_next = 1;
 
     while (*ptr != '\0')
     {
-        if ((*ptr >= 'a' && *ptr <= 'z') && capitalize_next)
+        if (capitalize_next && (*ptr >= 'a' && *ptr <= 'z'))
         {
-            // Convert lowercase letter to uppercase.
             *ptr = *ptr - 'a' + 'A';
-            capitalize_next = 0;
-        }
-        else if (*ptr == ' ' || *ptr == '\t' || *ptr == '\n' || *ptr == ',' ||
-                 *ptr == ';' || *ptr == '.' || *ptr == '!' || *ptr == '?' ||
-                 *ptr == '"' || *ptr == '(' || *ptr == ')' || *ptr == '{' || *ptr == '}')
-        {
-            capitalize_next = 1;
-        }
-        else
-        {
-            capitalize_next = 0;
         }
 
+        capitalize_next = is_separator(*ptr);
         ptr++;
     }
 
