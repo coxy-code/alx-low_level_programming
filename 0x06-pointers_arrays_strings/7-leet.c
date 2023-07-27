@@ -30,6 +30,6 @@ j++;
 ptr++;
 }
 
-return str;
+return (str);
 }
 
