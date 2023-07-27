@@ -8,23 +8,24 @@
  */
 char *leet(char *str)
 {
+    char leet_map[] = "aeotlAEOTL";
+    char leet_replace[] = "4307143071";
     char *ptr = str;
-    char leet_map[] = "aAeEoOtTlL";
-    char leet_replace[] = "4433007711";
     int i, j;
 
     while (*ptr != '\0')
     {
         i = 0;
+        j = 0;
         while (leet_map[i] != '\0')
         {
             if (*ptr == leet_map[i])
             {
-                // Replace the character with the corresponding leet character.
-                *ptr = leet_replace[i];
+                *ptr = leet_replace[j];
                 break;
             }
             i++;
+            j++;
         }
         ptr++;
     }
