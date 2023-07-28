@@ -1,50 +1,52 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
- * print_buffer - Prints the content of a buffer
- * @b: The buffer to print
- * @size: The number of bytes to print from the buffer
+ * infinite_add - Adds two numbers.
+ * @n1: First number.
+ * @n2: Second number.
+ * @r: Buffer to store the result.
+ * @size_r: Size of the buffer.
+ *
+ * Return: Pointer to the result.
  */
-void print_buffer(char *b, int size)
-{
-    int i, j;
+char *infinite_add(char *n1, char *n2, char *r, int size_r) {
+    int carry = 0;
+    int sum = 0;
+    int i = 0;
+    int len1 = 0;
+    int len2 = 0;
 
-    if (size <= 0)
-    {
-        printf("\n");
-        return;
+    while (n1[len1] != '\0')
+        len1++;
+
+    while (n2[len2] != '\0')
+        len2++;
+
+    if (len1 >= size_r || len2 >= size_r)
+        return (0);
+
+    len1--;
+    len2--;
+    size_r--;
+    r[size_r] = '\0';
+
+    while (len1 >= 0 || len2 >= 0) {
+        sum = carry;
+        if (len1 >= 0)
+            sum += n1[len1--] - '0';
+        if (len2 >= 0)
+            sum += n2[len2--] - '0';
+
+        carry = sum / 10;
+        r[size_r--] = (sum % 10) + '0';
     }
 
-    for (i = 0; i < size; i += 10)
-    {
-        printf("%08x: ", i); // Print the starting address of the line
+    if (carry && size_r >= 0)
+        r[size_r--] = carry + '0';
 
-        // Print hexadecimal content (2 chars) of the buffer, 2 bytes at a time
-        for (j = 0; j < 10; j++)
-        {
-            if (i + j < size)
-                printf("%02x", b[i + j]);
-            else
-                printf("  ");
+    if (size_r == -1)
+        return (0);
 
-            if (j % 2 != 0)
-                printf(" ");
-        }
-
-        // Print the content of the buffer
-        for (j = 0; j < 10; j++)
-        {
-            if (i + j >= size)
-                break;
-
-            if (b[i + j] >= 32 && b[i + j] <= 126) // Check for printable characters
-                printf("%c", b[i + j]);
-            else
-                printf(".");
-        }
-
-        printf("\n");
-    }
+    return (r + size_r + 1);
 }
 
