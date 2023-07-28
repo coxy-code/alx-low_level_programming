@@ -1,28 +1,20 @@
-#include "main.h"
+#include <stdio.h>
 
-/**
- * print_number - Prints an integer.
- * @n: The integer to be printed.
- */
-void print_number(int n)
-{
-    unsigned int num;
-
-    if (n < 0)
-    {
-        _putchar('-');
-        num = -n;
-    }
-    else
-    {
-        num = n;
-    }
-
-    if (num / 10 != 0)
-    {
-        print_number(num / 10);
-    }
-
-    _putchar(num % 10 + '0');
+/* Function to print a single character */
+void _putchar(char c) {
+    putchar(c);
 }
 
+/* Recursive function to print an integer */
+void print_number(int n) {
+    if (n < 0) {
+        _putchar('-');
+        n = -n;
+    }
+
+    if (n / 10 != 0) {
+        print_number(n / 10);
+    }
+
+    _putchar('0' + n % 10);
+}
