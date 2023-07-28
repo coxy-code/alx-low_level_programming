@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "main.h"
 
 int main(void) {
     int a[5] = {0, 1, 98, 3, 4};
@@ -6,8 +6,8 @@ int main(void) {
 
     p = a + 2; /* p points to a[2] */
 
-    printf("a[2] = %d", *p); /* Print a[2] = 98 */
-    putchar('\n'); /* Add new line */
+    print_number(*p); /* Print a[2] = 98 */
+    add_new_line(); /* Add new line */
 
     return (0);
 }
