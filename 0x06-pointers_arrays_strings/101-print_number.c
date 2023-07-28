@@ -1,14 +1,16 @@
-#include "studio.h"
+#include "main.h"
 
 /* Recursive function to print an integer */
 void print_number(int n) {
-    // Same implementation as before
-}
+    if (n < 0) {
+        _putchar('-');
+        n = -n;
+    }
 
-int main() {
-    int num = -12345;
-    print_number(num);
-    _putchar('\n');
-    return 0;
+    if (n / 10 != 0) {
+        print_number(n / 10);
+    }
+
+    _putchar('0' + n % 10);
 }
 
