@@ -19,7 +19,7 @@ char *leet(char *str);
 char *rot13(char *str);
 void print_number(int n);
 void _putchar(char c);
-
+void add_new_line();
 
 #endif /* MAIN_H */
 
