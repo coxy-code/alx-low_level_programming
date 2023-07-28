@@ -1,9 +1,7 @@
 #include <stdio.h>
 
-/* Function to print a single character */
-void _putchar(char c) {
-    putchar(c);
-}
+/* Forward declaration of _putchar function */
+void _putchar(char c);
 
 /* Recursive function to print an integer */
 void print_number(int n) {
@@ -18,3 +16,4 @@ void print_number(int n) {
 
     _putchar('0' + n % 10);
 }
+
