@@ -1,17 +1,19 @@
-#include "main.h"
+#include <stdio.h>
 
-char *_strchr(char *s, char c)
+char *_strchr(char *s, char c);
+
+int main(void)
 {
-    while (*s != '\0')
-    {
-        if (*s == c)
-            return s;
-        s++;
-    }
+    char *str = "Hello, World!";
+    char ch = 'o';
 
-    if (*s == c)
-        return s;
+    char *result = _strchr(str, ch);
 
-    return NULL;
+    if (result != NULL)
+        printf("Character '%c' found at position: %ld\n", ch, result - str);
+    else
+        printf("Character '%c' not found.\n", ch);
+
+    return 0;
 }
 
