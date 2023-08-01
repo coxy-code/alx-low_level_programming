@@ -2,6 +2,7 @@
 #define MAIN_H
 
 
+#undef _memcpy
 #include <stdio.h>
 #include <stddef.h> /* For size_t */
 
