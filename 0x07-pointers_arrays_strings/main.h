@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stddef.h> // For size_t
+#include <stddef.h> /* For size_t */
 
 char *_memcpy(char *dest, char *src, size_t n);
 void simple_print_buffer(char *buffer, unsigned int size);
