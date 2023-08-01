@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include "main.h"
 
-/**
- * main - check the code
- *
- * Return: Always 0.
- */
 int main(void)
 {
     char *s = "hello";
@@ -19,5 +14,17 @@ int main(void)
     }
 
     return (0);
+}
+
+char *_custom_memcpy(char *dest, char *src, unsigned int n)
+{
+    char *original_dest = dest;
+
+    while (n--)
+    {
+        *dest++ = *src++;
+    }
+
+    return original_dest;
 }
 
