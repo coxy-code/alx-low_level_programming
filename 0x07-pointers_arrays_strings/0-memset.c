@@ -1,30 +1,22 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
- * simple_print_buffer - prints buffer in hexa
- * @buffer: the address of memory to print
- * @size: the size of the memory to print
+ * custom_memset - Fills memory with a constant byte.
+ * @s: Pointer to the memory area to be filled.
+ * @b: The constant byte to fill the memory area with.
+ * @n: The number of bytes to fill.
  *
- * Return: Nothing.
+ * Return: A pointer to the memory area s.
  */
-void simple_print_buffer(char *buffer, unsigned int size)
+char *custom_memset(char *s, char b, unsigned int n)
 {
     unsigned int i;
 
-    i = 0;
-    while (i < size)
+    for (i = 0; i < n; i++)
     {
-        if (i % 10)
-        {
-            printf(" ");
-        }
-        if (!(i % 10) && i)
-        {
-            printf("\n");
-        }
-        printf("0x%02x", buffer[i]);
-        i++;
+        s[i] = b;
     }
-    printf("\n");
+
+    return s;
 }
+
