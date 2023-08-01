@@ -3,28 +3,19 @@
 
 int main(void)
 {
-    char *s = "hello";
-    char *f;
+    char str[] = "hello";
+    char c = 'l';
+    char *result = _strchr(str, c);
 
-    f = _strchr(s, 'l');
-
-    if (f != NULL)
+    if (result != NULL)
     {
-        printf("%s\n", f);
+        printf("Character '%c' found at position: %ld\n", c, result - str);
+    }
+    else
+    {
+        printf("Character '%c' not found in the string.\n", c);
     }
 
     return (0);
-}
-
-char *_custom_memcpy(char *dest, char *src, unsigned int n)
-{
-    char *original_dest = dest;
-
-    while (n--)
-    {
-        *dest++ = *src++;
-    }
-
-    return original_dest;
 }
 
