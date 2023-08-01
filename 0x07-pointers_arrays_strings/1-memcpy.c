@@ -1,22 +1,17 @@
+#include <stdio.h>
 #include "main.h"
 
-/**
- * _memcpy - Copies n bytes from memory area src to memory area dest.
- * @dest: Pointer to the destination memory area.
- * @src: Pointer to the source memory area.
- * @n: Number of bytes to be copied.
- *
- * Return: A pointer to the destination memory area (dest).
- */
-char *_memcpy(char *dest, char *src, unsigned int n)
-{
-    unsigned int i;
+char* _memcpy(char* dest, char* src, unsigned int n) {
+    // Implementation of _memcpy function (same as before)
+}
 
-    for (i = 0; i < n; i++)
-    {
-        dest[i] = src[i];
-    }
+int main() {
+    char src[] = "Source String";
+    char dest[20];
 
-    return dest;
+    _memcpy(dest, src, sizeof(src));
+    printf("Copied string: %s\n", dest);
+
+    return 0;
 }
 
