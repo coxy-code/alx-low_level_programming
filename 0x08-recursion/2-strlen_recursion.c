@@ -9,8 +9,7 @@ int _strlen_recursion(char *s)
 {
 if (*s == '\0')
 {
-/* If we reach the end of the string, return 0. */
-return 0;
+return (0); /* If we reach the end of the string, return 0. */
 }
 else
 {
