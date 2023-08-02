@@ -1,4 +1,5 @@
 #include "main.h"
+#include <unistd.h> // Include the necessary header for the write function
 
 /**
  * _putchar - Custom function to print a single character.
