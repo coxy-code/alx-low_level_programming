@@ -13,8 +13,8 @@ return (0);
 }
 else
 {
-/* Recursive call with the next character in the string,
-* and add 1 to the result (for the current character). */
+/* Recursive call with the next character in the string,*/
+/* and add 1 to the result (for the current character). */
 return (1 + _strlen_recursion(s + 1));
 }
 }
