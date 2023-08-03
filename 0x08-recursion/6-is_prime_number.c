@@ -14,7 +14,7 @@ int is_prime_number(int n)
     if (n <= 3)
         return 1; /* 2 and 3 are prime */
 
-    int i; // Move the variable declaration to the beginning of the function
+    int i; /* Move the variable declaration to the beginning of the function */
     /* Check divisibility by numbers from 2 to sqrt(n) */
     for (i = 2; i * i <= n; i++)
     {
