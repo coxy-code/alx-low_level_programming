@@ -10,13 +10,13 @@
 int is_prime_helper(int n, int divisor)
 {
 if (n < 2) /* 0 and 1 are not prime numbers */
-return 0;
+return (0);
 
 if (divisor * divisor > n) /* All divisors checked, it's a prime number */
-return 1;
+return (1);
 
 if (n % divisor == 0) /* n is divisible by divisor, not a prime number */
-return 0;
+return (0);
 
 return (is_prime_helper(n, divisor + 1)); /* Check next divisor */
 }
