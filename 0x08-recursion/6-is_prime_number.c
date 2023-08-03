@@ -29,6 +29,6 @@ return (is_prime_helper(n, divisor + 1)); /* Check next divisor */
 */
 int is_prime_number(int n)
 {
-return (is_prime_helper(n, 2)); /* Start checking from 2 (the first prime number) */
+return (is_prime_helper(n, 2)); /* Start checking from 2 (prime number) */
 }
 
