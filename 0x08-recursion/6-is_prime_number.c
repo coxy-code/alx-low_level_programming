@@ -1,51 +1,28 @@
 #include "main.h"
 
 /**
-* is_divisible - Checks if a number is divisible by any number from 2 to(n/2).
-* @n: The number to check for divisibility.
-* @divisor: The current divisor to check.
-* Return: 1 if n is divisible by any number in the range; otherwise, 0.
-*/
-int is_divisible(int n, int divisor)
-{
-if (divisor > n / 2)
-{
-/* If the divisor exceeds n/2, n is not divisible by any number in the range*/
-return (0);
-}
-else if (n % divisor == 0)
-{
-/* If n is divisible by the current divisor, it is not a prime number. */
-return (1);
-}
-else
-{
-/* Recursive call with the next divisor. */
-return (is_divisible(n, divisor + 1));
-}
-}
-
-/**
-* is_prime_number - Checks if a number is a prime number using recursion.
+* is_prime_number - Checks if a given number is a prime number.
 * @n: The number to check.
-* Return: 1 if n is a prime number; otherwise, 0.
+*
+* Return: 1 if the number is prime, 0 otherwise.
 */
 int is_prime_number(int n)
 {
-if (n <= 1)
-{
-/* If n is 0, 1, or negative, it is not a prime number. */
-return (0);
+/* Base cases */
+if (n <= 1) {
+return 0; /* Neither prime nor composite*/
 }
-else if (n == 2)
-{
-/* 2 is a prime number. */
-return (1);
+if (n <= 3) {
+return 1; /* 2 and 3 are prime*/
 }
-else
-{
-/* Start checking for divisibility from 2. */
-return (!is_divisible(n, 2));
+
+/* Check divisibility by numbers from 2 to sqrt(n) */
+int i;
+for (i = 2; i * i <= n; i++) {
+if (n % i == 0) {
+return 0; /*The number is divisible, so it's not prime*/
 }
+}
+return 1; /*The number is prime*/
 }
 
