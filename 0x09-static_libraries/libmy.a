@@ -1,13 +1,37 @@
-#!/bin/bash
+/* 0-isupper.c */
+int _isupper(int c)
+{
+    return (c >= 'A' && c <= 'Z');
+}
 
-# Compile each .c file into corresponding .o files
-for file in *.c; do
-    gcc -Wall -pedantic -Werror -Wextra -c "$file"
-done
+/* 0-memset.c */
+char *_memset(char *s, char b, unsigned int n)
+{
+    unsigned int i;
 
-# Create the static library libmy.a from the compiled .o files
-ar rcs libmy.a *.o
+    for (i = 0; i < n; i++)
+        s[i] = b;
 
-# Clean up by removing the compiled .o files
-rm -f *.o
+    return (s);
+}
+
+/* 0-strcat.c */
+char *_strcat(char *dest, char *src)
+{
+    int i, j;
+
+    for (i = 0; dest[i] != '\0'; i++)
+        ;
+
+    for (j = 0; src[j] != '\0'; j++)
+    {
+        dest[i] = src[j];
+        i++;
+    }
+    dest[i] = '\0';
+
+    return (dest);
+}
+
+/* ... (other function implementation files) */
 
