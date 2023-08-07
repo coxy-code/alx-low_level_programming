@@ -1,66 +1,94 @@
-#include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-int count_words(char *str)
-{
-    int i, count = 0, in_word = 0;
+int is_delimiter(char c) {
+    return c == ' ' || c == '\t';
+}
 
-    for (i = 0; str[i]; i++)
-    {
-        if (str[i] != ' ' && !in_word)
-        {
-            in_word = 1;
-            count++;
-        }
-        else if (str[i] == ' ')
-        {
-            in_word = 0;
-        }
+int count_words(char *str) {
+    int count = 0;
+    int i = 0;
+
+    while (str[i]) {
+        while (is_delimiter(str[i]))
+            i++;
+
+        if (str[i] == '\0')
+            break;
+
+        count++;
+
+        while (str[i] && !is_delimiter(str[i]))
+            i++;
     }
 
     return count;
 }
 
-char **strtow(char *str)
-{
-    int i, j, k, len, word_count;
-    char **words;
-
-    if (str == NULL || str[0] == '\0')
+char **strtow(char *str) {
+    if (str == NULL || *str == '\0')
         return NULL;
 
-    word_count = count_words(str);
+    int word_count = count_words(str);
+    if (word_count == 0)
+        return NULL;
 
-    words = malloc((word_count + 1) * sizeof(char *));
+    char **words = malloc((word_count + 1) * sizeof(char *));
     if (words == NULL)
         return NULL;
 
-    i = 0;
-    j = 0;
-    while (str[i])
-    {
-        while (str[i] == ' ')
+    int i = 0;
+    int word_index = 0;
+
+    while (str[i]) {
+        while (is_delimiter(str[i]))
             i++;
-        len = 0;
-        while (str[i + len] && str[i + len] != ' ')
-            len++;
-        words[j] = malloc((len + 1) * sizeof(char));
-        if (words[j] == NULL)
-        {
-            for (k = 0; k < j; k++)
-                free(words[k]);
+
+        if (str[i] == '\0')
+            break;
+
+        int j = i;
+        while (str[j] && !is_delimiter(str[j]))
+            j++;
+
+        int word_length = j - i;
+        words[word_index] = malloc((word_length + 1) * sizeof(char));
+        if (words[word_index] == NULL) {
+            while (word_index > 0) {
+                free(words[word_index - 1]);
+                word_index--;
+            }
             free(words);
             return NULL;
         }
-        for (k = 0; k < len; k++)
-            words[j][k] = str[i++];
-        words[j][k] = '\0';
-        j++;
+
+        for (int k = 0; k < word_length; k++)
+            words[word_index][k] = str[i++];
+
+        words[word_index][word_length] = '\0';
+        word_index++;
     }
 
-    words[j] = NULL;
+    words[word_index] = NULL;
 
     return words;
+}
+
+int main(void) {
+    char **tab;
+
+    tab = strtow(" Talk is cheap. Show me the code. ");
+    if (tab == NULL) {
+        printf("Failed\n");
+        return (1);
+    }
+
+    for (int i = 0; tab[i] != NULL; i++) {
+        printf("%s\n", tab[i]);
+        free(tab[i]);
+    }
+
+    free(tab);
+    return (0);
 }
 
