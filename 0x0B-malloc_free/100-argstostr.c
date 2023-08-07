@@ -36,8 +36,8 @@ for (j = 0; av[i][j]; j++)
 *concatenated_str++ = av[i][j];
 *concatenated_str++ = '\n';
 }
-*concatenated_str = '\0'; 
-/* Add null terminator */
+*concatenated_str = '\0'; /* Add null terminator */
+
 return (result);
 }
 
