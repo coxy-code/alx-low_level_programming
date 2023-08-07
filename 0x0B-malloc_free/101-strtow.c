@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int word_count(char *str)
+int count_words(char *str)
 {
     int i, count = 0, in_word = 0;
 
@@ -30,7 +30,7 @@ char **strtow(char *str)
     if (str == NULL || str[0] == '\0')
         return NULL;
 
-    word_count = word_count(str);
+    word_count = count_words(str);
 
     words = malloc((word_count + 1) * sizeof(char *));
     if (words == NULL)
