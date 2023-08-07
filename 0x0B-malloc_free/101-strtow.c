@@ -74,21 +74,3 @@ char **strtow(char *str) {
     return words;
 }
 
-int main(void) {
-    char **tab;
-
-    tab = strtow(" Talk is cheap. Show me the code. ");
-    if (tab == NULL) {
-        printf("Failed\n");
-        return (1);
-    }
-
-    for (int i = 0; tab[i] != NULL; i++) {
-        printf("%s\n", tab[i]);
-        free(tab[i]);
-    }
-
-    free(tab);
-    return (0);
-}
-
