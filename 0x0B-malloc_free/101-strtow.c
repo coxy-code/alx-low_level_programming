@@ -1,3 +1,6 @@
+#include <stddef.h>
+#include <stdlib.h>
+
 char **strtow(char *str) {
     int word_count, i, j, k, word_length, word_index;
     char **words;
@@ -5,11 +8,13 @@ char **strtow(char *str) {
     if (str == NULL || *str == '\0')
         return NULL;
 
-    word_count = count_words(str);
+    word_count = count_words(str); // Define count_words or include its declaration
+
     if (word_count == 0)
         return NULL;
 
     words = (char **)malloc((word_count + 1) * sizeof(char *));
+
     if (words == NULL)
         return NULL;
 
@@ -24,6 +29,7 @@ char **strtow(char *str) {
 
         word_length = j - i;
         words[word_index] = (char *)malloc((word_length + 1) * sizeof(char));
+
         if (words[word_index] == NULL) {
             while (word_index > 0) {
                 free(words[word_index - 1]);
