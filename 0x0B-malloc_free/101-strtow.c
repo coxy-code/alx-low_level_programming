@@ -1,32 +1,5 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-int is_delimiter(char c) {
-    return c == ' ' || c == '\t';
-}
-
-int count_words(char *str) {
-    int count = 0;
-    int i = 0;
-
-    while (str[i] != '\0') {
-        while (is_delimiter(str[i]))
-            i++;
-
-        if (str[i] == '\0')
-            break;
-
-        count++;
-
-        while (str[i] != '\0' && !is_delimiter(str[i]))
-            i++;
-    }
-
-    return count;
-}
-
 char **strtow(char *str) {
-    int word_count, i, j, k, word_length;
+    int word_count, i, j, k, word_length, word_index;
     char **words;
 
     if (str == NULL || *str == '\0')
@@ -41,7 +14,7 @@ char **strtow(char *str) {
         return NULL;
 
     i = 0;
-    for (int word_index = 0; word_index < word_count; word_index++) {
+    for (word_index = 0; word_index < word_count; word_index++) {
         while (is_delimiter(str[i]))
             i++;
 
