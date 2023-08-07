@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "main.h"
 
 char *create_array(unsigned int size, char c)
 {
@@ -9,7 +10,7 @@ char *create_array(unsigned int size, char c)
     if (array == NULL)
         return NULL;
 
-    unsigned int i; // Move the declaration here
+    unsigned int i;
     for (i = 0; i < size; i++)
         array[i] = c;
 
