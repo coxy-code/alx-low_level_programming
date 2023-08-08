@@ -12,10 +12,11 @@ int count_words(char *str)
 {
     int count = 0;
     int is_word = 0;
+    char *ptr = str;
 
-    while (*str != '\0')
+    while (*ptr != '\0')
     {
-        if (*str == ' ')
+        if (*ptr == ' ')
         {
             is_word = 0;
         }
@@ -24,7 +25,7 @@ int count_words(char *str)
             is_word = 1;
             count++;
         }
-        str++;
+        ptr++;
     }
 
     return count;
