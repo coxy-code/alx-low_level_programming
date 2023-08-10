@@ -6,7 +6,7 @@
 * @old_size: The size of the old memory block.
 * @new_size: The size of the new memory block.
 *
-* Return: A pointer to the reallocated memory block, or NULL on failure or invalid input.
+* Return: A pointer reallocated memory block, or failure or invalid input.
 */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
