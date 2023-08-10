@@ -1,18 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 
-void *malloc_checked(unsigned int b)
-{
-    void *ptr = malloc(b);
-
-    if (ptr == NULL)
-    {
-        exit(98);
-    }
-
-    return ptr;
-}
+/* Prototype of the malloc_checked function*/
+void *malloc_checked(unsigned int b);
 
 int main(void)
 {
@@ -27,12 +17,15 @@ int main(void)
     printf("%p\n", (void *)i);
     f = malloc_checked(sizeof(float) * 100000000);
     printf("%p\n", (void *)f);
-    d = malloc_checked(INT_MAX);
+    d = malloc_checked(sizeof(double) * INT_MAX); /* Corrected allocation size*/
     printf("%p\n", (void *)d);
+    
+    /* Free the allocated memory */
     free(c);
     free(i);
     free(f);
     free(d);
+
     return (0);
 }
 
