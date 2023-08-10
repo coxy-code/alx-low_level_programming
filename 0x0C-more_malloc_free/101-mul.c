@@ -11,8 +11,11 @@ void add_nums(char *final_prod, char *next_prod, int next_len);
 int find_len(char *str)
 {
     int len = 0;
-    while (*str++)
+    while (*str)
+    {
         len++;
+        str++;
+    }
     return len;
 }
 
@@ -23,26 +26,24 @@ char *create_xarray(int size)
     array = malloc(sizeof(char) * size);
     if (array == NULL)
         exit(98);
-    for (index = 0; index < (size - 1); index++)
+    for (index = 0; index < size - 1; index++)
         array[index] = 'x';
     array[index] = '\0';
-    return (array);
+    return array;
 }
 
 char *iterate_zeroes(char *str)
 {
     while (*str && *str == '0')
         str++;
-    return (str);
+    return str;
 }
 
 void get_prod(char *prod, char *mult, int digit)
 {
     int mult_len, num, tens = 0;
-
     mult_len = find_len(mult) - 1;
     mult += mult_len;
-    
     while (*prod)
     {
         *prod = 'x';
@@ -62,7 +63,9 @@ void get_prod(char *prod, char *mult, int digit)
         num += tens;
         *prod = (num % 10) + '0';
         tens = num / 10;
+        mult--;
     }
+
     if (tens)
         *prod = (tens % 10) + '0';
 }
@@ -70,6 +73,7 @@ void get_prod(char *prod, char *mult, int digit)
 void add_nums(char *final_prod, char *next_prod, int next_len)
 {
     int num, tens = 0;
+
     while (*(final_prod + 1))
         final_prod++;
     while (*(next_prod + 1))
@@ -81,10 +85,10 @@ void add_nums(char *final_prod, char *next_prod, int next_len)
         num += tens;
         *final_prod = (num % 10) + '0';
         tens = num / 10;
-
         next_prod--;
         next_len--;
     }
+
     if (tens)
         *final_prod = (tens % 10) + '0';
 }
@@ -92,17 +96,19 @@ void add_nums(char *final_prod, char *next_prod, int next_len)
 int main(int argc, char *argv[])
 {
     char *final_prod, *next_prod;
-    int size, index, digit, zeroes = 0;
+    int size, index, digit;
 
     if (argc != 3)
     {
         printf("Error\n");
         exit(98);
     }
+
     if (*(argv[1]) == '0')
         argv[1] = iterate_zeroes(argv[1]);
     if (*(argv[2]) == '0')
         argv[2] = iterate_zeroes(argv[2]);
+
     if (*(argv[1]) == '\0' || *(argv[2]) == '\0')
     {
         printf("0\n");
@@ -126,6 +132,7 @@ int main(int argc, char *argv[])
             putchar(final_prod[index]);
     }
     putchar('\n');
+
     free(next_prod);
     free(final_prod);
 
