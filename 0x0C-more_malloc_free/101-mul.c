@@ -85,7 +85,7 @@ char *iterate_zeroes(char *str)
     return (str);
 }
 
-void get_prod(char *prod, char *mult, int digit, int zeroes)
+void get_prod(char *prod, char *mult, int digit)
 {
     int mult_len, num, tens = 0;
 
