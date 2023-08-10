@@ -1,10 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "_putchar.c"
+
+int _putchar(char c);
 
 void print_error_and_exit()
 {
-    printf("Error\n");
+    _putchar('E');
+    _putchar('r');
+    _putchar('r');
+    _putchar('o');
+    _putchar('r');
+    _putchar('\n');
     exit(98);
 }
 
