@@ -26,10 +26,10 @@ char *create_xarray(int size)
     array = malloc(sizeof(char) * size);
     if (array == NULL)
         exit(98);
-    for (index = 0; index < size - 1; index++)
+    for (index = 0; index < (size - 1); index++)
         array[index] = 'x';
     array[index] = '\0';
-    return array;
+    return (array);
 }
 
 char *iterate_zeroes(char *str)
@@ -42,8 +42,10 @@ char *iterate_zeroes(char *str)
 void get_prod(char *prod, char *mult, int digit)
 {
     int mult_len, num, tens = 0;
+
     mult_len = find_len(mult) - 1;
     mult += mult_len;
+
     while (*prod)
     {
         *prod = 'x';
@@ -85,6 +87,7 @@ void add_nums(char *final_prod, char *next_prod, int next_len)
         num += tens;
         *final_prod = (num % 10) + '0';
         tens = num / 10;
+
         next_prod--;
         next_len--;
     }
@@ -104,12 +107,12 @@ int main(int argc, char *argv[])
         exit(98);
     }
 
-    if (*(argv[1]) == '0')
+    if (*argv[1] == '0')
         argv[1] = iterate_zeroes(argv[1]);
-    if (*(argv[2]) == '0')
+    if (*argv[2] == '0')
         argv[2] = iterate_zeroes(argv[2]);
 
-    if (*(argv[1]) == '\0' || *(argv[2]) == '\0')
+    if (*argv[1] == '\0' || *argv[2] == '\0')
     {
         printf("0\n");
         return (0);
