@@ -86,8 +86,8 @@ for (j = len2 - 1; j >= 0; j--)
 {
 carry = (result[i + j + 1] - '0' + ((argv[1][i] - '0')
 * (argv[2][j] - '0')) + carry) / 10;
-result[i + j + 1] = ((result[i + j + 1] - '0') + 
-((argv[1][i] - '0') * (argv[2][j] - '0')) + carry) % 10 + '0';
+result[i + j + 1] = ((result[i + j + 1] - '0') +((argv[1][i] - '0') 
+* (argv[2][j] - '0')) + carry) % 10 + '0';
 }
 result[i + j + 1] = carry + '0';
 }
