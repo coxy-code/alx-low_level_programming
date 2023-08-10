@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-int _putchar(char c)
-{
-    return putchar(c);
-}
+#include "_putchar.c"
 
 void print_error_and_exit()
 {
@@ -19,16 +15,16 @@ void print_result(char *result)
         i++;
 
     if (result[i] == '\0')
-        putchar('0');
+        _putchar('0');
     else
     {
         while (result[i])
         {
-            putchar(result[i]);
+            _putchar(result[i]);
             i++;
         }
     }
-    putchar('\n');
+    _putchar('\n');
 }
 
 int main(int argc, char *argv[])
