@@ -1,31 +1,23 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Prototype of the malloc_checked function*/
-void *malloc_checked(unsigned int b);
-
-int main(void)
+/**
+* malloc_checked - Allocates memory using malloc
+* @b: The number of bytes to allocate
+*
+* Return: A pointer to the allocated memory
+*         If malloc fails, the function terminates the program with status 98
+*/
+void *malloc_checked(unsigned int b)
 {
-    char *c;
-    int *i;
-    float *f;
-    double *d;
+void *ptr = malloc(b);
 
-    c = malloc_checked(sizeof(char) * 1024);
-    printf("%p\n", (void *)c);
-    i = malloc_checked(sizeof(int) * 402);
-    printf("%p\n", (void *)i);
-    f = malloc_checked(sizeof(float) * 100000000);
-    printf("%p\n", (void *)f);
-    d = malloc_checked(sizeof(double) * INT_MAX); /* Corrected allocation size*/
-    printf("%p\n", (void *)d);
-    
-    /* Free the allocated memory */
-    free(c);
-    free(i);
-    free(f);
-    free(d);
+if (ptr == NULL)
+{
+exit(98);
+}
 
-    return (0);
+return (ptr);
 }
 
