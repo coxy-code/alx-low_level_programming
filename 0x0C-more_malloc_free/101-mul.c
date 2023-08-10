@@ -3,7 +3,10 @@
 
 int _putchar(char c);
 
-void print_error_and_exit()
+/**
+* print_error_and_exit - Prints an error message and exits with status 98.
+*/
+void print_error_and_exit(void)
 {
 _putchar('E');
 _putchar('r');
@@ -14,11 +17,16 @@ _putchar('\n');
 exit(98);
 }
 
+/**
+* print_result - Prints the result of the multiplication.
+* @result: The result to be printed.
+*/
 void print_result(char *result)
 {
 int i = 0;
 while (result[i] == '0')
 i++;
+
 if (result[i] == '\0')
 _putchar('0');
 else
@@ -32,15 +40,19 @@ i++;
 _putchar('\n');
 }
 
+/**
+* main - Entry point. Multiplies two positive numbers.
+* @argc: The number of command-line arguments.
+* @argv: An array of strings containing the arguments.
+* Return: 0 on success, 1 on failure.
+*/
 int main(int argc, char *argv[])
 {
 int len1, len2;
 char *result;
 int i, j, carry;
-    
 if (argc != 3)
 print_error_and_exit();
-    
 len1 = 0;
 while (argv[1][len1])
 {
@@ -48,7 +60,7 @@ if (argv[1][len1] < '0' || argv[1][len1] > '9')
 print_error_and_exit();
 len1++;
 }
-    
+
 len2 = 0;
 while (argv[2][len2])
 {
@@ -59,7 +71,7 @@ len2++;
 
 if (len1 == 0 || len2 == 0)
 print_error_and_exit();
-    
+
 result = malloc(sizeof(char) * (len1 + len2 + 1));
 if (result == NULL)
 return (1);
@@ -67,7 +79,6 @@ return (1);
 for (i = 0; i < len1 + len2; i++)
 result[i] = '0';
 result[i] = '\0';
-
 for (i = len1 - 1; i >= 0; i--)
 {
 carry = 0;
