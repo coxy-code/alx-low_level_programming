@@ -13,7 +13,7 @@ int find_len(char *str)
     int len = 0;
     while (*str++)
         len++;
-    return (len);
+    return len;
 }
 
 char *create_xarray(int size)
@@ -42,14 +42,13 @@ void get_prod(char *prod, char *mult, int digit)
 
     mult_len = find_len(mult) - 1;
     mult += mult_len;
-    prod += find_len(prod) - 1;
-
-    while (*prod != 'x')
+    
+    while (*prod)
     {
         *prod = 'x';
-        prod--;
+        prod++;
     }
-    prod++;
+    prod--;
 
     for (; mult_len >= 0; mult_len--, prod--)
     {
@@ -63,7 +62,6 @@ void get_prod(char *prod, char *mult, int digit)
         num += tens;
         *prod = (num % 10) + '0';
         tens = num / 10;
-        mult--;
     }
     if (tens)
         *prod = (tens % 10) + '0';
@@ -94,20 +92,18 @@ void add_nums(char *final_prod, char *next_prod, int next_len)
 int main(int argc, char *argv[])
 {
     char *final_prod, *next_prod;
-    int size, index, digit;
+    int size, index, digit, zeroes = 0;
 
     if (argc != 3)
     {
         printf("Error\n");
         exit(98);
     }
-
-    if (*argv[1] == '0')
+    if (*(argv[1]) == '0')
         argv[1] = iterate_zeroes(argv[1]);
-    if (*argv[2] == '0')
+    if (*(argv[2]) == '0')
         argv[2] = iterate_zeroes(argv[2]);
-
-    if (*argv[1] == '\0' || *argv[2] == '\0')
+    if (*(argv[1]) == '\0' || *(argv[2]) == '\0')
     {
         printf("0\n");
         return (0);
@@ -130,7 +126,6 @@ int main(int argc, char *argv[])
             putchar(final_prod[index]);
     }
     putchar('\n');
-
     free(next_prod);
     free(final_prod);
 
