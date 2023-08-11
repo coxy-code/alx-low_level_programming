@@ -41,11 +41,18 @@ int main(int argc, char *argv[])
         add_nums(final_prod, next_prod, size - 1);
     }
 
+    int non_zero_found = 0;
     for (index = 0; final_prod[index]; index++)
     {
         if (final_prod[index] != 'x')
+            non_zero_found = 1;
+
+        if (non_zero_found)
             putchar(final_prod[index]);
     }
+    if (!non_zero_found)
+        putchar('0');
+    
     putchar('\n');
 
     free(next_prod);
