@@ -13,8 +13,12 @@ va_list args;
 unsigned int i = 0;
 char *separator = "";
 char current_format;
+char *str;
+int num;
+double f;
 
 va_start(args, format);
+
 while (format && format[i])
 {
 current_format = format[i];
@@ -22,17 +26,20 @@ current_format = format[i];
 switch (current_format)
 {
 case 'c':
-printf("%s%c", separator, va_arg(args, int));
+putchar(separator[0]);
+putchar(va_arg(args, int));
 break;
 case 'i':
-printf("%s%d", separator, va_arg(args, int));
+num = va_arg(args, int);
+printf("%s%d", separator, num);
 break;
 case 'f':
-printf("%s%f", separator, va_arg(args, double));
+f = va_arg(args, double);
+printf("%s%f", separator, f);
 break;
 case 's':
-separator = va_arg(args, char *) ? "" : "(nil)";
-printf("%s%s", separator, va_arg(args, char *));
+separator = (str = va_arg(args, char *)) ? "" : "(nil)";
+printf("%s%s", separator, str);
 break;
 default:
 i++;
@@ -45,6 +52,6 @@ i++;
 
 va_end(args);
 
-printf("\n");
+putchar('\n');
 }
 
