@@ -1,115 +1,79 @@
 #include "variadic_functions.h"
-#include <stdarg.h>
 #include <stdio.h>
 
 /**
-* print_char - Print a char argument.
-* @separator: The separator to use before the char.
-* @c: The char to print.
-* @first: Flag to indicate if it's the first argument.
-*/
-void print_char(char *separator, char c, int *first)
+ * print_char - Prints a character
+ * @args: A va_list containing the character to print
+ */
+void print_char(va_list args)
 {
-if (*first)
-*first = 0;
-else
-printf("%s", separator);
-
-printf("%c", c);
+	printf("%c", va_arg(args, int));
 }
 
 /**
-* print_int - Print an int argument.
-* @separator: The separator to use before the int.
-* @num: The int to print.
-* @first: Flag to indicate if it's the first argument.
-*/
-void print_int(char *separator, int num, int *first)
+ * print_int - Prints an integer
+ * @args: A va_list containing the integer to print
+ */
+void print_int(va_list args)
 {
-if (*first)
-*first = 0;
-else
-printf("%s", separator);
-printf("%d", num);
+	printf("%d", va_arg(args, int));
 }
 
 /**
-* print_float - Print a float argument.
-* @separator: The separator to use before the float.
-* @f: The float to print.
-* @first: Flag to indicate if it's the first argument.
-*/
-void print_float(char *separator, double f, int *first)
+ * print_float - Prints a float
+ * @args: A va_list containing the float to print
+ */
+void print_float(va_list args)
 {
-if (*first)
-*first = 0;
-else
-printf("%s", separator);
-
-printf("%f", f);
+	printf("%f", va_arg(args, double));
 }
 
 /**
-* print_string - Print a string argument.
-* @separator: The separator to use before the string.
-* @str: The string to print.
-* @first: Flag to indicate if it's the first argument.
-*/
-void print_string(char *separator, char *str, int *first)
+ * print_string - Prints a string
+ * @args: A va_list containing the string to print
+ */
+void print_string(va_list args)
 {
-if (*first)
-*first = 0;
-else
-printf("%s", separator);
+	char *str = va_arg(args, char *);
 
-if (str)
-printf("%s", str);
-else
-printf("(nil)");
+	if (str == NULL)
+		str = "(nil)";
+	printf("%s", str);
 }
 
-/**
-* print_all - Print arguments based on the format.
-* @format: A list of types of arguments passed to the function.
-* @...: The arguments to print.
-*/
 void print_all(const char * const format, ...)
 {
-va_list args;
-unsigned int i = 0;
-int first = 1;
-char *separator = "";
-char current_format;
-va_start(args, format);
+	va_list args;
+	unsigned int i = 0;
+	int j = 0;
+	char *separator = "";
 
-while (format && format[i])
-{
-current_format = format[i];
+	format_t formats[] = {
+		{'c', print_char},
+		{'i', print_int},
+		{'f', print_float},
+		{'s', print_string},
+		{'\0', NULL}
+	};
 
-switch (current_format)
-{
-case 'c':
-print_char(separator, va_arg(args, int), &first);
-break;
-case 'i':
-print_int(separator, va_arg(args, int), &first);
-break;
-case 'f':
-print_float(separator, va_arg(args, double), &first);
-break;
-case 's':
-print_string(separator, va_arg(args, char *), &first);
-break;
-default:
-i++;
-continue;
-}
-
-separator = ", ";
-i++;
-}
-
-va_end(args);
-printf("\n");
+	va_start(args, format);
+	while (format && format[i])
+	{
+		while (formats[j].format)
+		{
+			if (formats[j].format == format[i])
+			{
+				printf("%s", separator);
+				formats[j].func(args);
+				separator = ", ";
+				break;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	printf("\n");
+	va_end(args);
 }
 
