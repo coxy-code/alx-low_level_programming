@@ -41,6 +41,16 @@ str = "(nil)";
 printf("%s", str);
 }
 
+/**
+* print_all - Prints values based on the format provided.
+* @format: A string containing format specifiers.
+*          'c': char
+*          'i': integer
+*          'f': float
+*          's': string
+*          Any other specifier is ignored.
+* @...: Additional arguments corresponding to the format specifiers.
+*/
 void print_all(const char * const format, ...)
 {
 va_list args;
