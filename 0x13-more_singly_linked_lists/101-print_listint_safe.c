@@ -26,7 +26,7 @@ count++;
 if (slow == fast)
 {
 printf("-> [%p] %d\n", (void *)slow, slow->n);
-exit(98); // Exit with status 98 if loop detected
+exit(98); /*Exit with status 98 if loop detected*/
 }
 }
 
