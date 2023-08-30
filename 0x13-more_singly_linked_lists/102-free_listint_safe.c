@@ -1,3 +1,4 @@
+#include <stdlib.h>  
 #include "lists.h"
 
 /**
@@ -15,7 +16,7 @@ while (current)
 next = current->next;
 free(current);
 count++;
-        
+
 /* Detect if the next node has been visited before */
 if ((size_t)next <= (size_t)current)
 break;
